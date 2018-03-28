@@ -22,7 +22,8 @@ INLINEXML_EPATTERN = re.compile(r'<([A-Z]+?)>(.+?)</\1>')
 
 
 def start_ner_server(parser, model):
-  devnull = open('/dev/null', 'w')
+  errlog = open('/tmp/err.log', 'w')
+  log = open('/tmp/std.log', 'w')
   return subprocess.Popen([
     'java',
     '-Xmx900m',
@@ -33,7 +34,7 @@ def start_ner_server(parser, model):
     model,
     '-outputFormat',
     'inlineXML'
-  ], stdout=devnull, stderr=devnull)
+  ], stdout=errlog, stderr=log)
 
 
 @contextlib.contextmanager
