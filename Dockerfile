@@ -6,12 +6,12 @@ RUN apt-get install -y \
     && apt-get clean  && \
     rm -rf /var/lib/apt/lists/*
 
-ADD http://nlp.stanford.edu/software/stanford-ner-2015-01-29.zip ner.zip
+ADD http://nlp.stanford.edu/software/stanford-ner-2018-02-27.zip ner.zip
 RUN unzip ner.zip
 
-WORKDIR /stanford-ner-2015-01-30
+WORKDIR /stanford-ner-2018-02-27
 
 ADD run.py run.py
 
-ENTRYPOINT ["python", "-u", "/stanford-ner-2015-01-30/run.py"]
+ENTRYPOINT ["python", "-u", "/stanford-ner-2018-02-27/run.py"]
 EXPOSE 80
