@@ -1,5 +1,5 @@
 FROM java:8
-MAINTAINER Dmitry Sadovnychyi (ner@dmit.ro)
+MAINTAINER Keith Moore (keith.moore@epiqglobal.com)
 
 RUN apt-get install -y \
       unzip \
@@ -11,7 +11,11 @@ RUN unzip ner.zip
 
 WORKDIR /stanford-ner-2018-02-27
 
-ADD run.py run.py
+ENV port=9000 classifierPath=classifiers/english.muc.7class.distsim.crf.ser.gz outputFormat=inlineXML
 
-ENTRYPOINT ["python", "-u", "/stanford-ner-2018-02-27/run.py"]
-EXPOSE 80
+EXPOSE $port
+
+CMD java -mx1000m -cp stanford-ner.jar:lib/* edu.stanford.nlp.ie.NERServer \
+    -loadClassifier $classifierPath \
+    -port $port -outputFormat $outputFormat
+
