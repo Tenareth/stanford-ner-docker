@@ -15,7 +15,7 @@ from operator import itemgetter
 
 STANFORD_PARSER = os.path.abspath('stanford-ner.jar')
 STANFORD_MODEL = os.path.abspath(
-  'classifiers/english.muc.7class.distsim.crf.ser.gz')
+  'classifiers/english.all.3class.distsim.crf.ser.gz')
 SLASHTAGS_EPATTERN = re.compile(r'(.+?)/([A-Z]+)?\s*')
 XML_EPATTERN = re.compile(r'<wi num=".+?" entity="(.+?)">(.+?)</wi>')
 INLINEXML_EPATTERN = re.compile(r'<([A-Z]+?)>(.+?)</\1>')
