@@ -138,7 +138,8 @@ class HttpHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
   def build_response(self, query):
     if query is None:
-      return self.send_response(400)
+      """Load Balancers use GET / for health check - must return 200"""
+      return self.send_response(200)
     try:
       entities = self.ner.json_entities(query)
     except socket.error as e:
